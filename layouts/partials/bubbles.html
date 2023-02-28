@@ -1,0 +1,19 @@
+<div class="bubbles">
+    <div class="background-color-block"></div>
+    <ul>
+    {{ range .Site.Sections }}
+    <li>
+        <a href="{{ .Permalink }}">
+            {{ $section := . }}
+            {{ $image := .Resources.GetMatch "img.jpg" }}
+            {{ with $image }}
+            <div class="image-container">
+                <img  src="{{ ($image := $image.Fill "200x200 q100 Center").RelPermalink }}" alt="{{ $section.Title }}" />
+            </div>
+            {{ end }}
+            <p>{{ .Title }}</p>
+        </a>
+    </li>
+    {{ end }}
+    </ul>
+</div>
